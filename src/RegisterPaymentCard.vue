@@ -38,7 +38,7 @@
           <input type="month" class="form-control" id="card_date" />
         </div>
         <button type="submit" class="btn-margin">
-          <router-link to="/home">Zatwierdź dane do płatności</router-link>
+          <router-link to="/login">Zatwierdź dane do płatności</router-link>
         </button>
       </form>
     </div>

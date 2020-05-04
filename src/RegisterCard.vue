@@ -59,6 +59,9 @@ export default {
             "Zarejestrowano prawidłowo";
           document.getElementById("register-error-span").style =
             "color: lightgreen;";
+          setTimeout(function() {
+            window.location.href = "/register/payment";
+          }, 100);
         },
         error => {
           document.getElementById("register-error-span").innerHTML =
