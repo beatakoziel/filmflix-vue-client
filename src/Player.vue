@@ -1,7 +1,7 @@
 <template>
-  <vue-core-video-player
-    src="https://vwaw193.cda.pl/iNoPUNdDRNFhA6lkXUyKFg/1588657202/hdcfb16c0e049b3cab0d264e9f773b6fe5.mp4"
-  ></vue-core-video-player>
+  <video controls>
+    <source src="http://localhost:90/movies/videos/Sniper" type="video/mp4" />
+  </video>
 </template>
 
 <script>
@@ -17,7 +17,9 @@ export default {
 body {
   background-color: black;
 }
-.container {
-  margin-top: 8%;
+video {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 </style>

@@ -89,6 +89,12 @@ body {
   background-size: cover;
 }
 
+#register-error-span {
+  float: left;
+  padding-top: 20px;
+  margin-top: 30px;
+}
+
 a {
   text-decoration: none;
   color: white;
