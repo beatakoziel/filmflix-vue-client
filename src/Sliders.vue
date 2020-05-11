@@ -10,7 +10,7 @@
         type="button"
       >
         <span class="title">{{movie.title}}</span>
-        <router-link to="/play">
+        <router-link :to="'/play/' + movie.resourceUri">
           <button class="slide-button" @click="showPopUpWindow(movie)"></button>
         </router-link>
       </swiper-slide>

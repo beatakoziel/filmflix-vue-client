@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import Login from './Login.vue'
 import App from './App.vue'
 import Vuex from 'vuex'
 import 'bootstrap';

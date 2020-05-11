@@ -25,7 +25,7 @@ export const routes = [{
     component: Home
   },
   {
-    path: '/play',
+    path: '/play/:resource',
     component: Player
   }
 ];

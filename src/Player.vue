@@ -1,6 +1,6 @@
 <template>
   <video controls>
-    <source src="http://localhost:90/movies/videos/Sniper" type="video/mp4" />
+    <source :src="'http://localhost:90/movies/videos/' + resource" type="video/mp4" />
   </video>
 </template>
 
@@ -8,8 +8,13 @@
 export default {
   data() {
     return {
-      playerOptions: {}
+      resource: this.$route.params.resource
     };
+  },
+  watch: {
+    $route(to, from) {
+      this.resource = to.params.resource;
+    }
   }
 };
 </script>
