@@ -10,7 +10,7 @@
             id="mail"
             placeholder="Wprowadź e-mail"
             v-model="user.username"
-            s
+            @keyup.enter="submit"
           />
         </div>
         <div class="form-group">
@@ -21,6 +21,7 @@
             id="password"
             placeholder="Wprowadź hasło"
             v-model="user.password"
+            @keyup.enter="submit"
           />
         </div>
         <div class="form-group">
@@ -30,6 +31,7 @@
             id="confirm_password"
             placeholder="Potwierdź hasło"
             v-model="user.repeatPassword"
+            @keyup.enter="submit"
           />
         </div>
         <button type="button" class="btn-margin" @click="submit">Zarejestruj</button>
@@ -52,25 +54,35 @@ export default {
   },
   methods: {
     submit() {
-      console.log(this.user);
-      this.$http.post("http://localhost:90/register", this.user).then(
-        response => {
-          document.getElementById("register-error-span").innerHTML =
-            "Zarejestrowano prawidłowo";
-          document.getElementById("register-error-span").style =
-            "color: lightgreen;";
-          setTimeout(function() {
-            window.location.href = "/register/payment";
-          }, 100);
-        },
-        error => {
-          document.getElementById("register-error-span").innerHTML =
-            "Nieprawidłowe dane";
-          document.getElementById("register-error-span").style =
-            "color: lightcoral;";
-          console.log(error);
-        }
-      );
+      if (
+        this.user.username == "" ||
+        this.user.password == "" ||
+        this.user.repeatPassword == ""
+      ) {
+        document.getElementById("register-error-span").innerHTML =
+          "Uzupełnij puste pola";
+        document.getElementById("register-error-span").style =
+          "color: lightcoral;";
+      } else {
+        this.$http.post("http://localhost:90/register", this.user).then(
+          response => {
+            document.getElementById("register-error-span").innerHTML =
+              "Zarejestrowano prawidłowo";
+            document.getElementById("register-error-span").style =
+              "color: lightgreen;";
+            setTimeout(function() {
+              window.location.href = "/register/payment";
+            }, 100);
+          },
+          error => {
+            document.getElementById("register-error-span").innerHTML =
+              "Nieprawidłowe dane";
+            document.getElementById("register-error-span").style =
+              "color: lightcoral;";
+            console.log(error);
+          }
+        );
+      }
     }
   }
 };
@@ -112,7 +124,7 @@ a {
 .login-card-padding {
   margin: 10% 35%;
   box-shadow: 0px 0px 150px black;
-  background-color: rgba(15, 15, 15, 0.9);
+  background-color: rgba(15, 15, 15, 0.65);
 }
 
 .form-control {
@@ -131,7 +143,7 @@ a {
 }
 
 .btn-margin:hover {
-  font-weight: bold;
+  text-decoration: overline;
 }
 
 #logo {
@@ -160,9 +172,5 @@ a {
   color: white;
   text-decoration: none;
   margin-right: 15px;
-}
-
-#btn-zarejestruj:hover {
-  font-weight: bold;
 }
 </style>

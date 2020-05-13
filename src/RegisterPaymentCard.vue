@@ -62,7 +62,7 @@ a {
 .login-card-padding {
   margin: 10% 35%;
   box-shadow: 0px 0px 150px black;
-  background-color: rgba(15, 15, 15, 0.9);
+  background-color: rgba(15, 15, 15, 0.65);
 }
 
 .form-control {
@@ -81,6 +81,6 @@ a {
 }
 
 .btn-margin:hover {
-  font-weight: bold;
+  text-decoration: overline;
 }
 </style>

@@ -60,7 +60,7 @@ a {
 }
 
 .btn-margin:hover {
-  font-weight: bold;
+  text-decoration: overline;
 }
 
 #logo {
@@ -92,6 +92,6 @@ a {
 }
 
 #btn-zarejestruj:hover {
-  font-weight: bold;
+  text-decoration: overline;
 }
 </style>

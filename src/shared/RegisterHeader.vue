@@ -6,7 +6,7 @@
 
     <div class="collapse navbar-collapse"></div>
     <form class="form-inline my-2 my-lg-0">
-      <a id="btn-zarejestruj">
+      <a id="btn-login">
         <router-link to="/login">Zaloguj się</router-link>
       </a>
     </form>
@@ -62,7 +62,7 @@ a {
 }
 
 .btn-margin:hover {
-  font-weight: bold;
+  color: burlywood;
 }
 
 #logo {
@@ -86,14 +86,14 @@ a {
   box-shadow: 0px 0px 100px black;
 }
 
-#btn-zarejestruj {
+#btn-login {
   position: relative;
   color: white;
   text-decoration: none;
   margin-right: 15px;
 }
 
-#btn-zarejestruj:hover {
-  font-weight: bold;
+#btn-login:hover {
+  text-decoration: overline;
 }
 </style>

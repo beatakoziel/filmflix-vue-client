@@ -10,6 +10,7 @@
             id="username"
             placeholder="Wprowadź login"
             v-model="user.username"
+            @keyup.enter="submit"
           />
         </div>
         <div class="form-group">
@@ -20,6 +21,7 @@
             id="password"
             placeholder="Wprowadź hasło"
             v-model="user.password"
+            @keyup.enter="submit"
           />
         </div>
         <button type="button" class="btn-margin" @click="submit">Zaloguj</button>
@@ -98,7 +100,7 @@ body {
 .login-card-padding {
   margin: 10% 35%;
   box-shadow: 0px 0px 150px black;
-  background-color: rgba(15, 15, 15, 0.9);
+  background-color: rgba(15, 15, 15, 0.65);
 }
 
 .form-control {
@@ -117,7 +119,7 @@ body {
 }
 
 .btn-margin:hover {
-  font-weight: bold;
+  text-decoration: overline;
 }
 
 #logo {

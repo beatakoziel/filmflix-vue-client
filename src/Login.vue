@@ -26,8 +26,8 @@ body {
   top: 0;
   overflow: hidden;
   position: fixed;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)),
-    url("./assets/login_background.jpg") no-repeat center bottom fixed;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)),
+    url("./assets/poster4.jpg") no-repeat center bottom fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
