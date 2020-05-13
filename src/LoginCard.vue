@@ -43,28 +43,34 @@ export default {
   },
   methods: {
     submit() {
-      console.log(this.user);
-      this.$http.post("http://localhost:90/login", this.user).then(
-        response => {
-          this.$cookie.set("jwt", "Bearer " + response.body.jwt, 1);
-          console.log("COOKIE");
-          console.log(this.$cookie.get("jwt"));
-          document.getElementById("login-error-span").innerHTML =
-            "Zalogowano prawidłowo";
-          document.getElementById("login-error-span").style =
-            "color: lightgreen;";
-          setTimeout(function() {
-            window.location.href = "/home";
-          }, 100);
-        },
-        error => {
-          document.getElementById("login-error-span").innerHTML =
-            "Nieprawidłowe dane";
-          document.getElementById("login-error-span").style =
-            "color: lightcoral;";
-          console.log(error);
-        }
-      );
+      if (this.user.username == "" || this.user.password == "") {
+        document.getElementById("login-error-span").innerHTML =
+          "Uzupełnij puste pola";
+        document.getElementById("login-error-span").style =
+          "color: lightcoral;";
+      } else {
+        this.$http.post("http://localhost:90/login", this.user).then(
+          response => {
+            this.$cookie.set("jwt", "Bearer " + response.body.jwt, 1);
+            console.log("COOKIE");
+            console.log(this.$cookie.get("jwt"));
+            document.getElementById("login-error-span").innerHTML =
+              "Zalogowano prawidłowo";
+            document.getElementById("login-error-span").style =
+              "color: lightgreen;";
+            setTimeout(function() {
+              window.location.href = "/home";
+            }, 100);
+          },
+          error => {
+            document.getElementById("login-error-span").innerHTML =
+              "Nieprawidłowe dane";
+            document.getElementById("login-error-span").style =
+              "color: lightcoral;";
+            console.log(error);
+          }
+        );
+      }
     }
   }
 };

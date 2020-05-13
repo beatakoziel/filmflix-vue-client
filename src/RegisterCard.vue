@@ -11,6 +11,7 @@
             placeholder="Wprowadź e-mail"
             v-model="user.username"
             @keyup.enter="submit"
+            required="required"
           />
         </div>
         <div class="form-group">
@@ -22,6 +23,7 @@
             placeholder="Wprowadź hasło"
             v-model="user.password"
             @keyup.enter="submit"
+            required="required"
           />
         </div>
         <div class="form-group">
@@ -32,6 +34,7 @@
             placeholder="Potwierdź hasło"
             v-model="user.repeatPassword"
             @keyup.enter="submit"
+            required="required"
           />
         </div>
         <button type="button" class="btn-margin" @click="submit">Zarejestruj</button>
@@ -61,6 +64,11 @@ export default {
       ) {
         document.getElementById("register-error-span").innerHTML =
           "Uzupełnij puste pola";
+        document.getElementById("register-error-span").style =
+          "color: lightcoral;";
+      } else if (!this.user.username.includes("@")) {
+        document.getElementById("register-error-span").innerHTML =
+          "Email nieprawidłowy";
         document.getElementById("register-error-span").style =
           "color: lightcoral;";
       } else {
