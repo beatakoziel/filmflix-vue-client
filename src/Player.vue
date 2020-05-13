@@ -8,12 +8,37 @@
 export default {
   data() {
     return {
-      resource: this.$route.params.resource
+      resource: this.$route.params.resource,
+      video: null
     };
   },
   watch: {
     $route(to, from) {
       this.resource = to.params.resource;
+    }
+  },
+  mounted() {
+    this.getVideo();
+  },
+  methods: {
+    getVideo() {
+      this.$http
+        .get("'http://localhost:90/movies/videos/' + this.resource", {
+          headers: {
+            Authorization: this.$cookie.get("jwt")
+          }
+        })
+        .then(
+          response => {
+            conosle.log(response);
+            console.log(this.resource);
+            video = response;
+            return response.json();
+          },
+          error => {
+            console.log(error);
+          }
+        );
     }
   }
 };

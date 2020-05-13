@@ -8,11 +8,11 @@ import VueResource from 'vue-resource'
 import VueCookie from 'vue-cookie'
 import VueRouter from 'vue-router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import swiper from 'vue-awesome-swiper'
 import VueSwal from 'vue-swal'
 import 'swiper/css/swiper.css'
 import VueCoreVideoPlayer from 'vue-core-video-player';
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */ )
-
 import {
   routes
 } from './routes'
@@ -33,5 +33,6 @@ window.$ = JQuery;
 new Vue({
   el: '#app',
   router,
+  swiper,
   render: h => h(App)
 })

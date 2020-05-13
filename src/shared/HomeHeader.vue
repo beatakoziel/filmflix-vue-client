@@ -14,10 +14,10 @@
     <div class="menu" id="right-menu">
       <ul>
         <li>
-          <a>Profil</a>
+          <a @click="rou">Profil</a>
           <ul>
             <li>
-              <a>Konto</a>
+              <a @click="rou">Konto</a>
             </li>
             <li>
               <a @click="logout">
@@ -36,6 +36,9 @@ export default {
   methods: {
     logout() {
       this.$cookie.set("jwt", "", 1);
+    },
+    rou() {
+      this.$router.push("/login");
     }
   }
 };

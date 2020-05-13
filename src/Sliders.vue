@@ -15,23 +15,51 @@
         </router-link>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
+      <div class="swiper-scrollbar" slot="scrollbar"></div>
     </swiper>
-    <div v-if="show" class="swiper-button-next"></div>
-    <div v-if="show" class="swiper-button-prev"></div>
+    <p v-if="show">Akcja</p>
+    <swiper v-if="show" ref="mySwiper" :options="swiperOptions">
+      <swiper-slide
+        v-for="movie in filterEventsByCategory('akcja')"
+        :key="`movie-${movie.id}`"
+        v-bind:style="{ backgroundImage: 'url(' + movie.coverUri + ')' }"
+        type="button"
+      >
+        <span class="title">{{movie.title}}</span>
+        <router-link :to="'/play/' + movie.resourceUri">
+          <button class="slide-button" @click="showPopUpWindow(movie)"></button>
+        </router-link>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
+      <div class="swiper-scrollbar" slot="scrollbar"></div>
+    </swiper>
+    <p v-if="show">Thriller</p>
+    <swiper v-if="show" ref="mySwiper" :options="swiperOptions">
+      <swiper-slide
+        v-for="movie in filterEventsByCategory('thriller')"
+        :key="`movie-${movie.id}`"
+        v-bind:style="{ backgroundImage: 'url(' + movie.coverUri + ')' }"
+        type="button"
+      >
+        <span class="title">{{movie.title}}</span>
+        <router-link :to="'/play/' + movie.resourceUri">
+          <button class="slide-button" @click="showPopUpWindow(movie)"></button>
+        </router-link>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
+      <div class="swiper-scrollbar" slot="scrollbar"></div>
+    </swiper>
   </div>
 </template>
 
 <script>
 export default {
-  computed: {
-    swiper() {
-      return this.$refs.mySwiper.$swiper;
-    }
-  },
-  mounted() {
-    console.log("Current Swiper instance object", this.swiper);
-    this.swiper.slideTo(3, 1000, false);
-  },
   data() {
     return {
       movies: [],
@@ -45,9 +73,9 @@ export default {
           prevEl: ".swiper-button-prev"
         },
         slidesPerView: 5,
-        spaceBetween: 30
-        //loop: true
-        // Some Swiper option/callback...
+        spaceBetween: 30,
+        static: false,
+        loop: true
       }
     };
   },
@@ -64,10 +92,7 @@ export default {
         })
         .then(
           response => {
-            console.log(this.show);
-
             this.show = true;
-            console.log(this.show);
             console.log(response);
             return response.json();
           },
@@ -167,8 +192,6 @@ p {
 }
 .swiper-button-prev,
 .swiper-button-next {
-  position: absolute;
-  margin-top: 338px;
   color: white;
 }
 .swiper-button-prev:hover,
