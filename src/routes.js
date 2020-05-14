@@ -3,6 +3,7 @@ import Register from './Register.vue'
 import RegisterPayment from './RegisterPayment.vue'
 import Home from './Home.vue'
 import Player from './Player.vue'
+import UserAccount from "./UserAccount.vue"
 
 export const routes = [{
     path: '/',
@@ -27,5 +28,9 @@ export const routes = [{
   {
     path: '/play/:resource',
     component: Player
+  },
+  {
+    path: '/account',
+    component: UserAccount
   }
 ];

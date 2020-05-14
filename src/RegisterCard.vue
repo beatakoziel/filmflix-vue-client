@@ -154,27 +154,6 @@ a {
   text-decoration: overline;
 }
 
-#logo {
-  margin-right: 25px;
-  margin-left: 25px;
-  font-family: "Francois One", sans-serif !important;
-  font-size: 20px;
-  letter-spacing: 1.5px;
-  color: white;
-}
-
-.navbar-custom {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0))
-    no-repeat center bottom fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-blend-mode: darken;
-  color: white;
-  box-shadow: 0px 0px 100px black;
-}
-
 #btn-zarejestruj {
   position: relative;
   color: white;
