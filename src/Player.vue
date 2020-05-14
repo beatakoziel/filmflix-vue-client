@@ -52,4 +52,8 @@ video {
   width: 100vw;
   overflow: hidden;
 }
+
+video:focus{
+  outline: none;
+}
 </style>
