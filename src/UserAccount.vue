@@ -9,7 +9,7 @@
 
 <script>
 import HomeHeader from "./shared/HomeHeader.vue";
-import UserAccountCard from "./UserAccountCard.vue"
+import UserAccountCard from "./UserAccountCard.vue";
 export default {
   components: {
     homeHeader: HomeHeader,
@@ -27,7 +27,7 @@ export default {
   top: 0;
   position: absolute;
   background-color: #1a1a1a;
-      background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)),
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)),
     url("./assets/poster3.jpg") no-repeat center bottom fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
