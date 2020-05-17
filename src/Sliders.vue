@@ -104,7 +104,7 @@ export default {
       opinionsArray.forEach(singleOpinion => {
         var singleOpinionDiv = document.createElement("DIV");
         singleOpinionDiv.innerHTML = singleOpinion.comment;
-        singleOpinionDiv.style.cssText = "border: 0.2px gray; border-style: hidden hidden solid hidden; margin-bottom: 2px; width: 98%;";
+        singleOpinionDiv.style.cssText = "border: 0.2px gray; border-style: hidden hidden solid hidden; margin-bottom: 2px; width: 98%; word-wrap: break-word;";
         opinionsDiv.appendChild(singleOpinionDiv);
       });
       document.getElementById("insideModal").appendChild(opinionsDiv);
@@ -121,12 +121,16 @@ export default {
       title.style.padding="5px";
       title.style.marginTop="25px";
 
-      var title = document.createElement("DIV");
-      title.innerHTML = "Opinie do filmu \"" + movie.title + "\"";
-      title.setAttribute('id','title-content')
-      title.style.margin="auto";
-      title.style.padding="5px";
-      title.style.marginTop="25px";
+      var backBtn = document.createElement("BUTTON");
+      backBtn.setAttribute('id','backBtn-content');
+      backBtn.onclick = function(){
+        _this.closePopUpWindow();
+        _this.showPopUpWindow(movie);
+      }; 
+      backBtn.style.cssText = "font-size: 45px; position: absolute; top: 0%; margin-left: 2.5%; border: none; background: none; color: gray;";
+      backBtn.addEventListener('mouseenter', e => {backBtn.textContent = "⇦";});
+      backBtn.addEventListener('mouseleave', e => {backBtn.textContent = "⇽";});
+      backBtn.textContent = "⇽";
 
       var signLimit = document.createElement("DIV");
       signLimit.innerHTML = "Limit znaków: 200";
@@ -140,6 +144,7 @@ export default {
       var addOpinionTextField = document.createElement("INPUT");
       addOpinionTextField.setAttribute("type", "text");
       addOpinionTextField.setAttribute('id','opinion-input');
+      addOpinionTextField.setAttribute('autocomplete','off');
       addOpinionTextField.oninput = function(){
         signLimit.style.visibility = "visible";
         var fieldLength = addOpinionTextField.value.length;
@@ -156,7 +161,7 @@ export default {
           addOpinionTextField.value = str;
         }
       };
-      addOpinionTextField.style.cssText = "position: absolute; width: 76%; margin-top: 9vh; margin-left: 2%; background-color: #404040; border: none; color: white";
+      addOpinionTextField.style.cssText = "position: absolute; width: 76%; margin-top: 9vh; margin-left: 2%; background-color: #404040; border: none; color: white;";
 
       var addOpinionBtn = document.createElement("BUTTON");
       addOpinionBtn.onclick = function(){
@@ -177,6 +182,7 @@ export default {
       divInModal.appendChild(title);
       divInModal.appendChild(addOpinionTextField);
       divInModal.appendChild(addOpinionBtn);   
+      divInModal.appendChild(backBtn);  
       divInModal.appendChild(signLimit);  
       this.completeOpinions(null);
 
@@ -187,6 +193,7 @@ export default {
       var modal = document.getElementById("myModal");
 
       var listOfObjects=[];
+      listOfObjects.push(document.getElementById("backBtn-content"));
       listOfObjects.push(document.getElementById("title-content"));
       listOfObjects.push(document.getElementById("description-content"));
       listOfObjects.push(document.getElementById("playBtn-content"));
