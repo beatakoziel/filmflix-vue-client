@@ -1,5 +1,5 @@
 <template>
-  <video controls>
+  <video controls autoplay>
     <source :src="'http://localhost:90/movies/videos/' + resource" type="video/mp4" />
   </video>
 </template>
