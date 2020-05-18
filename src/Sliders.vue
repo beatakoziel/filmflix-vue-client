@@ -386,6 +386,10 @@ p {
   outline: none;
 }
 
+.slide-button:hover {
+  
+}
+
 .swiper-container {
   width: 100%;
   min-height: fit-content;
@@ -422,6 +426,8 @@ p {
 
 .swiper-slide:hover {
   box-shadow: 0px 0px 40px black;
+  z-index: 1;
+  transform: scale(1.16);
 }
 .swiper-button-prev,
 .swiper-button-next {
