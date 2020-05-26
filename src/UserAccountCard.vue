@@ -57,7 +57,7 @@
               v-model="paymentDetails.cardDate"
             />
           </div>
-          <button type="button" class="btn-margin" @click="submit">Zapłać</button>
+          <button type="button" class="btn-margin" @click="pay">Zapłać</button>
           <span id="register-error-span"></span>
         </form>
       </div>
@@ -121,7 +121,7 @@ export default {
   methods: {
     getUser() {
       this.$http
-        .get("http://localhost:90/user", {
+        .get("http://localhost:8081/user", {
           headers: {
             Authorization: this.$cookie.get("jwt")
           }
@@ -143,6 +143,40 @@ export default {
           this.user = data;
           console.log(this.user);
         });
+    },
+    pay() {
+        if (this.paymentDetails.name == "" || 
+        this.paymentDetails.cardNumber == "" || 
+        this.paymentDetails.cvcNumber == "" ||
+        this.paymentDetails.cardDate == ""
+        ) {
+        document.getElementById("register-error-span").innerHTML =
+          "Uzupełnij puste pola";
+        document.getElementById("register-error-span").style =
+          "color: lightcoral;";
+      } else {
+        this.$http.post("http://localhost:8081/user/pay", this.user).then(
+          response => {
+            this.$cookie.set("jwt", "Bearer " + response.body.jwt, 1);
+            console.log("COOKIE");
+            console.log(this.$cookie.get("jwt"));
+            document.getElementById("register-error-span").innerHTML =
+              "Zalogowano prawidłowo";
+            document.getElementById("register-error-span").style =
+              "color: lightgreen;";
+            setTimeout(function() {
+              window.location.href = "/home";
+            }, 100);
+          },
+          error => {
+            document.getElementById("register-error-span").innerHTML =
+              "Nieprawidłowe dane";
+            document.getElementById("register-error-span").style =
+              "color: lightcoral;";
+            console.log(error);
+          }
+        );
+      }
     }
   }
 };

@@ -265,7 +265,7 @@ export default {
     },
     getMovies() {
       this.$http
-        .get("http://localhost:90/movies", {
+        .get("http://localhost:8081/movies", {
           headers: {
             Authorization: this.$cookie.get("jwt")
           }
@@ -294,7 +294,7 @@ export default {
     },   
     getOpinions(movieId) {
       this.$http
-        .get("http://localhost:90/movies/" + movieId + "/opinions", {
+        .get("http://localhost:8081/movies/" + movieId + "/opinions", {
           headers: {
             Authorization: this.$cookie.get("jwt")
           }
@@ -322,7 +322,7 @@ export default {
     addOpinion(comment, movieId){
       var data = "{\"comment\"" + ":" + "\"" + comment + "\"}";
       this.$http
-        .post("http://localhost:90/movies/" + movieId + "/opinions", data, {
+        .post("http://localhost:8081/movies/" + movieId + "/opinions", data, {
           headers: {
             Authorization: this.$cookie.get("jwt")
           }

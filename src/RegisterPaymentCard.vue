@@ -72,7 +72,7 @@ export default {
           "color: lightcoral;";
       } else {
         this.$http
-          .post("http://localhost:90/user/pay", {
+          .post("http://localhost:8081/user/pay", {
             headers: {
               Authorization: this.$cookie.get("jwt")
             }

@@ -72,7 +72,7 @@ export default {
         document.getElementById("register-error-span").style =
           "color: lightcoral;";
       } else {
-        this.$http.post("http://localhost:90/register", this.user).then(
+        this.$http.post("http://localhost:8081/register", this.user).then(
           response => {
             document.getElementById("register-error-span").innerHTML =
               "Zarejestrowano prawidłowo";

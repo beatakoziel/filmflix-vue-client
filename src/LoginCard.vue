@@ -49,7 +49,7 @@ export default {
         document.getElementById("login-error-span").style =
           "color: lightcoral;";
       } else {
-        this.$http.post("http://localhost:90/login", this.user).then(
+        this.$http.post("http://localhost:8081/login", this.user).then(
           response => {
             this.$cookie.set("jwt", "Bearer " + response.body.jwt, 1);
             console.log("COOKIE");

@@ -1,10 +1,12 @@
 <template>
   <header>
-    <div id="logo">FILMFLIX</div>
+    <div id="logo"><router-link to="/home">FILMFLIX</router-link></div>
     <div class="menu" id="left-menu">
       <ul>
         <li>
-          <a id="current-category">Filmy</a>
+          <a id="current-category">
+            <router-link to="/home">Filmy</router-link>
+            </a>
         </li>
         <li>
           <a>Seriale</a>
@@ -20,9 +22,7 @@
               <a @click="rou">Konto</a>
             </li>
             <li>
-              <a @click="logout">
-                <router-link to="/login">Wyloguj się</router-link>
-              </a>
+              <a @click="logout">Wyloguj się</a>
             </li>
           </ul>
         </li>
@@ -36,9 +36,14 @@ export default {
   methods: {
     logout() {
       this.$cookie.set("jwt", "", 1);
+      setTimeout(function() {
+                window.location.href = "/login";
+              }, 100);
     },
     rou() {
-      this.$router.push("/login");
+      setTimeout(function() {
+                window.location.href = "/account";
+              }, 100);
     }
   }
 };
@@ -47,6 +52,7 @@ export default {
 a {
   text-decoration: none;
   color: white;
+  cursor: pointer;
 }
 header {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));

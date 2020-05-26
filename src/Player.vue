@@ -1,6 +1,6 @@
 <template>
   <video controls autoplay>
-    <source :src="'http://localhost:90/movies/videos/' + resource" type="video/mp4" />
+    <source :src="'http://localhost:8081/movies/videos/' + resource" type="video/mp4" />
   </video>
 </template>
 
@@ -23,7 +23,7 @@ export default {
   methods: {
     getVideo() {
       this.$http
-        .get("'http://localhost:90/movies/videos/' + this.resource", {
+        .get("'http://localhost:8081/movies/videos/' + this.resource", {
           headers: {
             Authorization: this.$cookie.get("jwt")
           }
