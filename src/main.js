@@ -12,6 +12,7 @@ import swiper from 'vue-awesome-swiper'
 import VueSwal from 'vue-swal'
 import 'swiper/css/swiper.css'
 import VueCoreVideoPlayer from 'vue-core-video-player';
+import babelPolyfill from 'babel-polyfill'
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */ )
 import {
   routes

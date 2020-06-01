@@ -56,6 +56,29 @@ export default {
     };
   },
   methods: {
+        async login(_this)
+    {
+        let newUser = {
+        username: this.user.username,
+        password: this.user.password,
+      } 
+              await this.$http.post("http://localhost:8081/login", newUser).then(
+                response => {
+                  //var bearer = response.body.jwt;
+                  //console.log("MAJNE BERER: "+bearer);
+                  _this.$cookie.set("jwt", "Bearer " + response.body.jwt, 1);
+                  return Promise.resolve();
+                },
+                error => {
+                  document.getElementById("register-error-span").innerHTML =
+                    "Coś poszło nie tak!";
+                  document.getElementById("register-error-span").style =
+                    "color: lightcoral;";
+                  console.log(error);
+                  return Promise.reject();
+                }
+              );
+    },
     submit() {
       if (
         this.user.username == "" ||
@@ -74,13 +97,18 @@ export default {
       } else {
         this.$http.post("http://localhost:8081/register", this.user).then(
           response => {
-            document.getElementById("register-error-span").innerHTML =
-              "Zarejestrowano prawidłowo";
-            document.getElementById("register-error-span").style =
-              "color: lightgreen;";
-            setTimeout(function() {
-              window.location.href = "/register/payment";
-            }, 100);
+            var _this = this;
+            var newBearer = this.login(_this).then(function(){
+              document.getElementById("register-error-span").innerHTML =
+                "Zarejestrowano prawidłowo";
+              document.getElementById("register-error-span").style =
+                "color: lightgreen;";
+              console.log(_this.$cookie.get("jwt"));
+              setTimeout(function() {
+                window.location.href = "/register/payment";
+              }, 100);
+
+            })
           },
           error => {
             document.getElementById("register-error-span").innerHTML =
@@ -91,7 +119,7 @@ export default {
           }
         );
       }
-    }
+    },
   }
 };
 </script>

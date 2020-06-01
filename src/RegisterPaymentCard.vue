@@ -71,13 +71,13 @@ export default {
         document.getElementById("register-error-span").style =
           "color: lightcoral;";
       } else {
-        this.$http
-          .post("http://localhost:8081/user/pay", {
-            headers: {
-              Authorization: this.$cookie.get("jwt")
-            }
-          })
-          .then(
+        var bearer = this.$cookie.get("jwt");
+          if(bearer.startsWith("Bearer")){
+          this.$http.post("http://localhost:8081/user/pay", " ", {
+          headers: {
+            Authorization: bearer
+          }
+        }).then(
             response => {
               document.getElementById("register-error-span").innerHTML =
                 "Zarejestrowano prawidłowo";
@@ -95,6 +95,13 @@ export default {
               console.log(error);
             }
           );
+          }
+          else{
+            document.getElementById("register-error-span").innerHTML =
+                "Nieprawidłowe dane";
+              document.getElementById("register-error-span").style =
+                "color: lightcoral;";
+          }
       }
     }
   }

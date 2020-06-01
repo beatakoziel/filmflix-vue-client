@@ -121,7 +121,7 @@ export default {
   methods: {
     getUser() {
       this.$http
-        .get("http://localhost:8081/user", {
+        .get("http://localhost:8081/user",{
           headers: {
             Authorization: this.$cookie.get("jwt")
           }
@@ -144,6 +144,34 @@ export default {
           console.log(this.user);
         });
     },
+    submit() {
+      if(this.userPasswords.password = this.userPasswords.repeatPassword){
+        this.$http
+          .post("http://localhost:8081/user/password", this.userPasswords.password, {
+            headers: {
+              Authorization: this.$cookie.get("jwt")
+            }
+          })
+          .then(
+            response => {
+              document.getElementById("register-error-span").innerHTML =
+                "Hasła zostały zmienione prawidłowo";
+              document.getElementById("register-error-span").style =
+                "color: lightgreen;";
+              setTimeout(function() {
+                window.location.href = "/home";
+              }, 100);
+            },
+            error => {
+              document.getElementById("register-error-span").innerHTML =
+                "Hasła nie zgadzają się";
+              document.getElementById("register-error-span").style =
+                "color: lightcoral;";
+              console.log(error);
+            }
+          )
+      }
+    },
     pay() {
         if (this.paymentDetails.name == "" || 
         this.paymentDetails.cardNumber == "" || 
@@ -155,13 +183,14 @@ export default {
         document.getElementById("register-error-span").style =
           "color: lightcoral;";
       } else {
-        this.$http.post("http://localhost:8081/user/pay", this.user).then(
+          this.$http.post("http://localhost:8081/user/pay", " ", {
+          headers: {
+            Authorization: this.$cookie.get("jwt")
+          }
+        }).then(
           response => {
-            this.$cookie.set("jwt", "Bearer " + response.body.jwt, 1);
-            console.log("COOKIE");
-            console.log(this.$cookie.get("jwt"));
             document.getElementById("register-error-span").innerHTML =
-              "Zalogowano prawidłowo";
+              "Ustawiono nową metodę płatności";
             document.getElementById("register-error-span").style =
               "color: lightgreen;";
             setTimeout(function() {
